@@ -64,11 +64,11 @@ for s = 0 to n – m do
 
 - Пример работы алгоритма для подстроки "hel" и текста "hello"
 
-![](https://github.com/PetrSU-IMIT-2020/algo/blob/main/question12/images/ex1.png)
+![](images/ex1.png)
 
-![](https://github.com/PetrSU-IMIT-2020/algo/blob/main/question12/images/ex2.png)
+![](images/ex2.png)
 
-![](https://github.com/PetrSU-IMIT-2020/algo/blob/main/question12/images/ex3.png)
+![](images/ex3.png)
 
 ## Вычисление хэша
 
