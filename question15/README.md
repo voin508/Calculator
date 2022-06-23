@@ -33,45 +33,45 @@ BoyerMoore (T,P,Σ)
 s = 0 
 while s ≤ n – m do 
  { 
- j = m 
- while (j>0) and (P[j]=T[s+j]) do 
- j-- 
- if j = 0 then 
- { 
-print “Строка входит со сдвигом” s 
- s += γ[0] 
+  j = m 
+  while (j>0) and (P[j]=T[s+j]) do 
+   j-- 
+  if j = 0 then 
+  { 
+   print “Строка входит со сдвигом” s 
+   s += γ[0] 
+  } 
+  else 
+   s += max (γ[j], j - λ[T[s+j]]) 
+  } 
  } 
- else 
- s += max (γ[j], j - λ[T[s+j]]) 
- } 
-} 
 Эвристика стоп-символа
 ComputeLastOccurrenceFunction(P,m,Σ) 
 { 
-for a ∈ Σ do 
-λ[a] = 0 
-for j = 1 to m do 
-λ[P[j]] = j 
-return λ
+ for a ∈ Σ do 
+  λ[a] = 0 
+ for j = 1 to m do 
+  λ[P[j]] = j 
+ return λ
 } 
 Эвристика безопасного суффикса
 γ[j] = m – max{k: 0≤k<m и P[j+1..m] ~ Pk} 
 ComputeGoodSuffixFunction(P,m) 
 { 
-π = ComputePrefixFunction(P) 
-P’ = обращение строки (P) 
-π’ = ComputePrefixFunction(P’) 
-for j = 0 to m do 
-γ[j] = m – π[m] 
-for l = 1 to m do 
+ π = ComputePrefixFunction(P) 
+ P’ = обращение строки (P) 
+ π’ = ComputePrefixFunction(P’) 
+ for j = 0 to m do 
+  γ[j] = m – π[m] 
+ for l = 1 to m do 
  { 
- j = m - π’[l] 
- if γ[j] > l - π’[l] then 
- γ[j] = l - π’[l] 
+  j = m - π’[l] 
+  if γ[j] > l - π’[l] then 
+   γ[j] = l - π’[l] 
  } 
 return γ
 } 
-Эвристика с
+
 ```
 
 ## Пример 
