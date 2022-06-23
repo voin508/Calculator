@@ -22,8 +22,56 @@
 ## Псевдокод
 
 ```python
-Мы не понимаем, что это за говно, как тут юзаются 2 таблицы, как они вообще составляются. Если кто-то адекватно
-распишет - будет кайфово.
+Идея алгоритма такова. Начинаем сравнивать символы стоки и символы текста с
+конца строки. Если обнаруживается несовпадение, то смещаем строку таким образом, 
+чтобы совместить последний рассмотренный символ текста с крайним его вхождением в
+искомую строку.
+BoyerMoore (T,P,Σ) 
+{ 
+λ = ComputeLastOccurrenceFunction(P,m,Σ) 
+γ = ComputeGoodSuffixFunction(P,m) 
+s = 0 
+while s ≤ n – m do 
+ { 
+ j = m 
+ while (j>0) and (P[j]=T[s+j]) do 
+ j-- 
+ if j = 0 then 
+ { 
+print “Строка входит со сдвигом” s 
+ s += γ[0] 
+ } 
+ else 
+ s += max (γ[j], j - λ[T[s+j]]) 
+ } 
+} 
+Эвристика стоп-символа
+ComputeLastOccurrenceFunction(P,m,Σ) 
+{ 
+for a ∈ Σ do 
+λ[a] = 0 
+for j = 1 to m do 
+λ[P[j]] = j 
+return λ
+} 
+Эвристика безопасного суффикса
+γ[j] = m – max{k: 0≤k<m и P[j+1..m] ~ Pk} 
+ComputeGoodSuffixFunction(P,m) 
+{ 
+π = ComputePrefixFunction(P) 
+P’ = обращение строки (P) 
+π’ = ComputePrefixFunction(P’) 
+for j = 0 to m do 
+γ[j] = m – π[m] 
+for l = 1 to m do 
+ { 
+ j = m - π’[l] 
+ if γ[j] > l - π’[l] then 
+ γ[j] = l - π’[l] 
+ } 
+return γ
+} 
+Эвристика с
 ```
 
 ## Пример 
